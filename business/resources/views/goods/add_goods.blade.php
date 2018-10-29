@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -62,7 +63,7 @@
                                 <div class="row data-type">                                  
 								   <div class="col-md-2 title">商品分类</div>
 		                          
-		                           	  <div class="col-md-10 data">
+		                           	 <div class="col-md-10 data">
 		                           	  	<table>
 		                           	  		<tr>
 		                           	  			<td>
@@ -70,19 +71,18 @@
 		                           	  				</select>
 		                              			</td>
 		                              			<td>
-		                           	  				<select class="form-control select-sm" ></select>
+		                           	  				<select class="form-control select-sm" >
+													</select>
 		                              			</td>
 		                              			<td>
-		                           	  				<select class="form-control select-sm" ></select>
-		                              			</td>
-		                              			<td>
-		                           	  				模板ID:19
+		                           	  				<select class="form-control select-sm" >
+													</select>
 		                              			</td>
 		                           	  		</tr>
 		                           	  	</table>
 		                              	
 		                              </div>	                              
-		                          	  
+		                          	   
 									
 		                           <div class="col-md-2 title">商品名称</div>
 		                           <div class="col-md-10 data">

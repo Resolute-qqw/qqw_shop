@@ -13,6 +13,9 @@
 </head>
 
 <body>
+@if(session('tips'))
+	<script>alert('{{session('tips')}}');</script>
+@endif
 	<div class="login-box">
 		<!--head-->
 		<div class="py-container logoArea">
@@ -41,19 +44,20 @@
 							<img src="/business/img/wx_cz.jpg" />
 						</div>
 						<div id="profile" class="tab-pane  active">
-							<form class="sui-form">
+							<form class="sui-form" action="{{route('business.dologin')}}" method="post">
+							@csrf
 								<div class="input-prepend"><span class="add-on loginname"></span>
-									<input id="prependedInput" type="text" placeholder="邮箱/用户名/手机号" class="span2 input-xfat">
+									<input id="prependedInput" name="login_name" type="text" placeholder="邮箱/用户名/手机号" class="span2 input-xfat">
 								</div>
 								<div class="input-prepend"><span class="add-on loginpwd"></span>
-									<input id="prependedInput" type="password" placeholder="请输入密码" class="span2 input-xfat">
+									<input id="prependedInput" name="login_pwd" type="password" placeholder="请输入密码" class="span2 input-xfat">
 								</div>
 								<div class="setting">
 									<label class="checkbox inline"><input name="m1" type="checkbox" value="2" checked="">自动登录</label>
 									<span class="forget">忘记密码？</span>
 								</div>
 								<div class="logined">
-									<a class="sui-btn btn-block btn-xlarge btn-danger" href="admin/index.html" target="_blank">登&nbsp;&nbsp;录</a>
+									<input class="sui-btn btn-block btn-xlarge btn-danger"  type="submit" value="登&nbsp;&nbsp;录">
 								</div>
 							</form>
 							<div class="otherlogin">

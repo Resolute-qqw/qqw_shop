@@ -55,7 +55,7 @@
 
 							<div class="login_icon"><img src="/admin_style/images/login.png" /></div>
 							<form action="{{route('dologin')}}" method="POST">
-								{{csrf_field()}}
+								@csrf
 								<fieldset>
 									<ul>
 										<li class="frame_style form_error"><label class="user_icon"></label><input name="username" sign="同户名" type="text" id="username" /><i>用户名</i></li>

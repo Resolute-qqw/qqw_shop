@@ -140,5 +140,11 @@
     border-color: #ccc;
     text-decoration: none
 }
-
-
+.error {
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid #ff4343;
+	background: #ffe9e9;
+	padding: 30px;
+	margin: 20px 0;
+}

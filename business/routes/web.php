@@ -11,16 +11,29 @@
 |
 */
 
-Route::get('/','BusinessController@index')->name('business.index');
+// 中间件
+Route::middleware(['business'])->group(function(){
 
-Route::get('/home','BusinessController@home')->name('business.home');
-// 基本管理
-// 密码修改
-Route::get('/edit/pwd','BusinessController@edit_pwd')->name('business.edit_pwd');
-Route::post('/update/pwd','BusinessController@update_pwd')->name('business.update_pwd');
-// 信息修改
-Route::get('/edit/info','BusinessController@edit_info')->name('business.edit_info');
-Route::post('/update/info','BusinessController@update_info')->name('business.update_info');
+    Route::get('/','BusinessController@index')->name('business.index');
+
+    Route::get('/home','BusinessController@home')->name('business.home');
+    // 基本管理
+    // 密码修改
+    Route::get('/edit/pwd','BusinessController@edit_pwd')->name('business.edit_pwd');
+    Route::post('/update/pwd','BusinessController@update_pwd')->name('business.update_pwd');
+    // 信息修改
+    Route::get('/edit/info','BusinessController@edit_info')->name('business.edit_info');
+    Route::post('/update/info','BusinessController@update_info')->name('business.update_info');
+
+    // 商品管理
+    Route::get('/goods/index','GoodsController@index')->name('goods.index');
+    Route::get('/goods/create','GoodsController@create')->name('goods.create');
+
+    // 退出登录
+    Route::get('/logout','BusinessController@logout')->name('business.logout');
+
+});
+
 // 商家注册
 Route::get('/register','BusinessController@register')->name('business.register');
 Route::post('/doregister','BusinessController@doregister')->name('business.doregister');
@@ -30,8 +43,3 @@ Route::post('/dologin','BusinessController@dologin')->name('business.dologin');
 // 入驻协议
 Route::get('/sampling','BusinessController@sampling')->name('business.sampling');
 Route::get('/cooperation','BusinessController@cooperation')->name('business.cooperation');
-
-
-// 商品管理
-Route::get('/goods/index','GoodsController@index')->name('goods.index');
-Route::get('/goods/create','GoodsController@create')->name('goods.create');

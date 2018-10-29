@@ -12,139 +12,149 @@
 
 <body>
 	<div class="register py-container ">
+	
 		<!--head-->
 		<div class="logoArea">
 			<a href="" class="logo"></a>
 		</div>
 		<!--register-->
+		<div class="container">
+			@if($errors->any())
+			<ul class="error">
+				@foreach($errors->all() as $e)
+				<li>{{$e}}</li>
+				@endforeach
+			</ul>
+			@endif
+		</div>
 		<div class="registerArea">
-			<h3>商家入驻申请<span class="go">我有账号，去<a href="{{route('business.login')}}" target="_blank">登陆</a></span></h3>
+			<h3>商家入驻申请<span class="go">我有账号，去<a href="{{route('business.doregister')}}" target="_blank">登陆</a></span></h3>
 			<div class="info">
-				<form class="sui-form form-horizontal">
-				
+				<form action="{{route('business.dologin')}}" method="post" class="sui-form form-horizontal">
+					@csrf
 					<div class="control-group">
 						<label class="control-label">登陆名（不可修改）：</label>
 						<div class="controls">
-							<input type="text" placeholder="登陆名" class="input-xfat input-xlarge">
+							<input type="text" name="login_name" placeholder="登陆名" class="input-xfat input-xlarge">
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<label class="control-label">登陆密码：</label>
 						<div class="controls">
-							<input type="password" placeholder="登陆密码" class="input-xfat input-xlarge">
+							<input type="password" name="login_pwd" placeholder="登陆密码" class="input-xfat input-xlarge">
 						</div>
 					</div>
 				
 					<div class="control-group">
 						<label class="control-label">店铺名称：</label>
 						<div class="controls">
-							<input type="text" placeholder="店铺名称" class="input-xfat input-xlarge">
+							<input type="text" name="shop_name" placeholder="店铺名称" class="input-xfat input-xlarge">
 						</div>
 					</div>
 				
 					<div class="control-group">
 						<label class="control-label">公司名称：</label>
 						<div class="controls">
-							<input type="text" placeholder="公司名称" class="input-xfat input-xlarge">
+							<input type="text" name="company_name" placeholder="公司名称" class="input-xfat input-xlarge">
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<label class="control-label">公司电话：</label>
 						<div class="controls">
-							<input type="text" placeholder="公司电话" class="input-xfat input-xlarge">
+							<input type="text" name="company_phone" placeholder="公司电话" class="input-xfat input-xlarge">
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<label class="control-label">公司详细地址：</label>
 						<div class="controls">
-							<input type="text" placeholder="公司详细地址" class="input-xfat input-xlarge">
+							<input type="text" name="company_address" placeholder="公司详细地址" class="input-xfat input-xlarge">
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<label class="control-label">联系人姓名：</label>
 						<div class="controls">
-							<input type="text" placeholder="联系人姓名" class="input-xfat input-xlarge">
+							<input type="text" name="contacts_name" placeholder="联系人姓名" class="input-xfat input-xlarge">
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<label class="control-label">联系人QQ：</label>
 						<div class="controls">
-							<input type="text" placeholder="联系人QQ" class="input-xfat input-xlarge">
+							<input type="text" name="contacts_qq" placeholder="联系人QQ" class="input-xfat input-xlarge">
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<label class="control-label">联系人手机：</label>
 						<div class="controls">
-							<input type="text" placeholder="联系人手机" class="input-xfat input-xlarge">
+							<input type="text" name="contacts_phone" placeholder="联系人手机" class="input-xfat input-xlarge">
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<label class="control-label">联系人EMAIL：</label>
 						<div class="controls">
-							<input type="text" placeholder="联系人EMAIL" class="input-xfat input-xlarge">
+							<input type="text" name="contacts_email" placeholder="联系人EMAIL" class="input-xfat input-xlarge">
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<label class="control-label">营业执照号：</label>
 						<div class="controls">
-							<input type="text" placeholder="营业执照号" class="input-xfat input-xlarge">
+							<input type="text" name="b_l_n" placeholder="营业执照号" class="input-xfat input-xlarge">
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<label class="control-label">税务登记证号：</label>
 						<div class="controls">
-							<input type="text" placeholder="税务登记证号" class="input-xfat input-xlarge">
+							<input type="text" name="t_r_c" placeholder="税务登记证号" class="input-xfat input-xlarge">
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<label class="control-label">组织机构代码证：</label>
 						<div class="controls">
-							<input type="text" placeholder="组织机构代码证" class="input-xfat input-xlarge">
+							<input type="text" name="o_c_c" placeholder="组织机构代码证" class="input-xfat input-xlarge">
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<label class="control-label">法定代表人：</label>
 						<div class="controls">
-							<input type="text" placeholder="法定代表人" class="input-xfat input-xlarge">
+							<input type="text" name="l_r" placeholder="法定代表人" class="input-xfat input-xlarge">
 						</div>
 					</div>
 
 					<div class="control-group">
 						<label class="control-label">法定代表人身份证号：</label>
 						<div class="controls">
-							<input type="text" placeholder="法定代表人身份证号" class="input-xfat input-xlarge">
+							<input type="text" name="l_r_id" placeholder="法定代表人身份证号" class="input-xfat input-xlarge">
 						</div>
 					</div>	
 
 					<div class="control-group">
 						<label class="control-label">开户行名称：</label>
 						<div class="controls">
-							<input type="text" placeholder="开户行名称" class="input-xfat input-xlarge">
+							<input type="text" name="n_o_a_b" placeholder="开户行名称" class="input-xfat input-xlarge">
 						</div>
 					</div>
 
 					<div class="control-group">
 						<label class="control-label">开户行支行：</label>
 						<div class="controls">
-							<input type="text" placeholder="开户行支行" class="input-xfat input-xlarge">
+							<input type="text" name="bank_branch" placeholder="开户行支行" class="input-xfat input-xlarge">
 						</div>
 					</div>
 
 					<div class="control-group">
 						<label class="control-label">银行账号：</label>
 						<div class="controls">
-							<input type="text" placeholder="银行账号" class="input-xfat input-xlarge">
+							<input type="text" name="bank_account" placeholder="银行账号" class="input-xfat input-xlarge">
 						</div>
 					</div>					
 					
@@ -157,7 +167,7 @@
 					<div class="control-group">
 						<label class="control-label"></label>
 						<div class="controls btn-reg">
-							<a class="sui-btn btn-block btn-xlarge btn-danger" href="home.html" target="_blank">申请入驻</a>
+							<input type="submit" class="sui-btn btn-block btn-xlarge btn-danger" value="申请入驻">
 						</div>
 					</div>
 				</form>

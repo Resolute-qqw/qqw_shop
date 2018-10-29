@@ -34,7 +34,9 @@
 	</script>    
 
 </head>
-
+@if(session('tips'))
+<script>alert('{{session('tips')}}');</script>
+@endif
 <body class="hold-transition skin-blue sidebar-mini">
 
     <div class="wrapper">
@@ -259,7 +261,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="/business/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">chendahai</span>
+                                <span class="hidden-xs">{{session('login_name')}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -267,7 +269,7 @@
                                     <img src="/business/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                     <p>
-                                       chendahai 
+                                       {{session('login_name')}} 
                                         <small>最后登录 11:20AM</small>
                                     </p>
                                 </li>
@@ -278,7 +280,7 @@
                                         <a href="#" class="btn btn-default btn-flat">修改密码</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">注销</a>
+                                        <a href="{{route('business.logout')}}" class="btn btn-default btn-flat">注销</a>
                                     </div>
                                 </li>
                             </ul>
@@ -300,7 +302,7 @@
                         <img src="/business/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p> chendahai</p>
+                        <p> {{session('login_name')}}</p>
                         <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
                     </div>
                 </div>
