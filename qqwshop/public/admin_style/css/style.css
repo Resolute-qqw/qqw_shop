@@ -316,8 +316,8 @@ body
 /*********添加品牌样式属性********/
 #add_brand{}
 .button_brand{ position:absolute; bottom:10px; width:160px; left:45%}
-#add_brand .left_add{ width:600px; float:left; border-right:1px solid #ddd; border-bottom:1px solid #dddddd; position:fixed;overflow:auto; z-index:234}
-#add_brand .left_add .title_name{ width:599px;}
+#add_brand .left_add{ width:100%; float:left; border-right:1px solid #ddd; border-bottom:1px solid #dddddd; position:fixed;overflow:auto; z-index:234}
+#add_brand .left_add .title_name{ width:100%;}
 #add_brand .right_add{ float:left; margin-left:600px;position:fixed;overflow:auto; border-bottom:1px solid #dddddd;}
 #add_brand .add_conent{ padding:15px;margin-top:40px}
 #add_brand .add_conent li{ padding:10px 0px}

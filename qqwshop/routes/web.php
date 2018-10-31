@@ -24,8 +24,14 @@ Route::middleware(['privilege'])->group(function(){
     Route::get('/products/list','ProductsController@products_list')->name('productsList');
     // 添加产品
     Route::get('/products/add','ProductsController@add')->name('products.add');
+    
+
     // 品牌管理
     Route::get('/brand/manage','ProductsController@brand_manage')->name('brandManage');
+    // 添加品牌
+    Route::get('/brand/create','ProductsController@brand_create')->name('brand.create');
+    Route::post('/brand/store','ProductsController@brand_store')->name('brand.store');
+
     // 分类管理
     Route::get('/category/manage','ProductsController@category_manage')->name('categoryManage');
     // 分类修改

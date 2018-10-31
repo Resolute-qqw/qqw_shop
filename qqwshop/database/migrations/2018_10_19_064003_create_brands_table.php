@@ -13,10 +13,12 @@ class CreateBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
+        Schema::create('goods_brands', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('brand_name',255);
-            $table->string('brand_logo',255);
+            $table->string('brand_name',255)->comment('品牌名');
+            $table->string('brand_logo',255)->comment('品牌logo');
+            $table->string('brand_describe',255)->comment('品牌描述');
+            $table->timestamps();
             $table->index('id');
             $table->engine='InnoDB';
             $table->comment='品牌表';

@@ -15,8 +15,11 @@ class CreateGoodsImagesTable extends Migration
     {
         Schema::create('goods_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('image_id');
-            $table->string('image_path',514);
+            $table->unsignedInteger('goods_id');
+            $table->string('goods_sm_img')->comment('小尺寸缩略图');
+            $table->string('goods_md_img')->comment('中尺寸缩略图');
+            $table->string('goods_bg_img')->comment('大尺寸缩略图');
+            $table->string('image_path',514)->comment('商品图');
             $table->index('image_path');
             $table->engine='InnoDB';
             $table->comment='商品图片表';

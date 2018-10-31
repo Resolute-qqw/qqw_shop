@@ -16,9 +16,10 @@ class CreateGoodsSkusTable extends Migration
         Schema::create('goods_skus', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('goods_id');
-            $table->string('attr_name',255);
-            $table->unsignedInteger('Inventory');
-            $table->float('price',10,2);
+            $table->string('sku_name',255)->comment('sku名');
+            $table->string('sku_value',255)->comment('sku值');
+            $table->unsignedInteger('Inventory')->comment('库存');
+            $table->float('price',10,2)->comment('价钱');
             $table->index('goods_id');
             $table->engine='InnoDB';
             $table->comment='商品SKU表';

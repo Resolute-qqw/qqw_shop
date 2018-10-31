@@ -28,6 +28,8 @@ Route::middleware(['business'])->group(function(){
     // 商品管理
     Route::get('/goods/index','GoodsController@index')->name('goods.index');
     Route::get('/goods/create','GoodsController@create')->name('goods.create');
+    // ajax三级联动
+    Route::get('/category/ajax','GoodsController@category_ajax')->name('category.ajax');
 
     // 退出登录
     Route::get('/logout','BusinessController@logout')->name('business.logout');
