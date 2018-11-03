@@ -16,7 +16,10 @@ class CreateGoodsTable extends Migration
         Schema::create('goods', function (Blueprint $table) {
             $table->increments('id');
             $table->string('goods_name', 255)->comment('商品名称');
-            $table->string('goods_logo', 255)->comment('商品logo');
+            $table->string('goods_sm_logo', 255)->comment('商品小logo');
+            $table->string('goods_md_logo', 255)->comment('商品中logo');
+            $table->string('goods_bg_logo', 255)->comment('商品大logo');
+
             $table->enum('whether_sale', ['yes', 'no'])->comment('是否上架');
             $table->longText('description')->comment('商品描述');
             $table->unsignedInteger('goods_type_id')->comment('商品id');

@@ -3509,7 +3509,7 @@ li [class^="icon-"],li [class*=" icon-"],.nav-list li [class^="icon-"],.nav-list
   margin-right:5px;
   position: relative;
   border-radius:3px;
-  -moz- border-radius:3px;
+  -moz-border-radius:3px;
   -ms-border-radius:3px;
   -webkit-border-radius:3px;
   -o-border-radius:3px;

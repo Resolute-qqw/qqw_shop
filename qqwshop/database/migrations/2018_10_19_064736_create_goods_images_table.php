@@ -19,8 +19,8 @@ class CreateGoodsImagesTable extends Migration
             $table->string('goods_sm_img')->comment('小尺寸缩略图');
             $table->string('goods_md_img')->comment('中尺寸缩略图');
             $table->string('goods_bg_img')->comment('大尺寸缩略图');
-            $table->string('image_path',514)->comment('商品图');
-            $table->index('image_path');
+            $table->string('goods_image',514)->comment('商品图');
+            $table->index('goods_id');
             $table->engine='InnoDB';
             $table->comment='商品图片表';
         });
