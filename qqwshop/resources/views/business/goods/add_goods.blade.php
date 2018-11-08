@@ -237,23 +237,8 @@
 							            </thead>
 					                    <tbody id="sku_box">
 										<tr>					                           
-											<td width="20%">
-												<input type="text" name="sku_name[]" id="">
-											</td>
-											<td width="20%">
-												<input type="text" name="sku_value[]" id="">            	 
-											</td>
-											<td width="20%">
-												<input type="text" name="inventory[]" id="">            	 
-											</td>
-											<td width="20%">
-												<input type="text" name="price[]" id="">            	 
-											</td>
-											<td width="20%">
-												<button type="button" class="btn btn-default" title="追加sku值" ><i class="fa fa-trash-o"></i> 追加sku值</button>
-												<button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
-											</td> 
-					                      </tr>
+											
+					                    </tr>
 					                    </tbody>
 								 </table> 
 								  
@@ -265,8 +250,6 @@
 						<!--表单内容/-->
 							 
                     </div>
-                 	
-                 	
                  	
                  	
                    </div>
@@ -306,6 +289,7 @@
 		}
 		return url
 	}
+	var number = 0
 	var img_str =  `<tr>					                           
 					<td width="30%">
 						<input type="file" class="preview" name="goods_image[]">
@@ -330,24 +314,7 @@
 					</td> 
 				</tr>`;
 	
-	var sku_str = `<tr>					                           
-					<td width="20%">
-						<input type="text" name="sku_name[]" id="">
-					</td>
-					<td width="20%">
-						<input type="text" name="sku_value[]" id="">            	 
-					</td>
-					<td width="20%">
-						<input type="text" name="inventory[]" id="">            	 
-					</td>
-					<td width="20%">
-						<input type="text" name="price[]" id="">            	 
-					</td>
-					<td width="20%">
-						<button type="button" class="btn btn-default" title="追加sku值" ><i class="fa fa-trash-o"></i> 追加sku值</button>
-						<button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
-					</td>
-				</tr>`;
+	
 
 	$("#add_image").click(function(){
 	
@@ -381,10 +348,29 @@
 		$("#attr_box").append(attr_str);
 	})
 
+	
 	$("#add_sku").click(function(){
+		number++
+		sku_str = '<tr><td width="20%" id="sku_n"><input type="text" name="sku_name'+number+'[]" sku_number="'+number+'"></td><td width="20%" id="sku_v"><input type="text" name="sku_value'+number+'[]" id=""></td><td width="20%" id="sku_i"><input type="text" name="inventory'+number+'[]" id=""></td><td width="20%" id="sku_p"><input type="text" name="price'+number+'[]" id=""></td><td width="20%"><button type="button" name="append_v" class="btn btn-default" title="追加sku值" ><i class="fa fa-trash-o"></i> 追加sku值</button><button type="button" name="sku_del" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button></td> </tr>';
+		
 		$("#sku_box").append(sku_str);
-	})
 
+		$("button[name=sku_del]").on("click",function(){
+			$(this).parent().parent().remove();
+		})
+		$("button[name=append_v]").off("click").on("click",function(){
+			var skuNumber = $(this).parent().siblings('#sku_n').children().attr('sku_number')
+
+			var appsku_v = '<input type="text" name="sku_value'+skuNumber+'[]" id="">'
+			var appsku_i = '<input type="text" name="inventory'+skuNumber+'[]" id="">'
+			var appsku_p = '<input type="text" name="price'+skuNumber+'[]" id="">'
+			
+			$(this).parent().siblings('#sku_v').append(appsku_v)
+			$(this).parent().siblings('#sku_i').append(appsku_i)
+			$(this).parent().siblings('#sku_p').append(appsku_p)
+		})
+		
+	})
 
 	$("select[name=goods_type_id]").change(function(){
 		var id = $("select[name=goods_type_id]").val();
@@ -426,4 +412,8 @@
 
 	$("select[name=goods_type_id]").trigger('change');
 
+	$("button[name=sku_del]").click(function(){
+		$(this).parent().parent().remove();
+	})
+	$("#add_sku").trigger('click');
 </script>

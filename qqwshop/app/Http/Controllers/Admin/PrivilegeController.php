@@ -39,9 +39,9 @@ class PrivilegeController extends Controller
     public function store(PrivilegeRequest $req){
         $status = Privilege::pri_add($req->all());
         if($status['error']){
-            return redirect()->route('admin.privilege.index')->with('tips',$status['message']);
+            return redirect()->route('admin.category.create')->with('tips',$status['message']);
         }
-        return redirect()->route('admin.privilege.index')->with('tips','添加成功!');
+        return redirect()->route('admin.category.manage')->with('tips','添加成功!');
     }
     public function edit($id){
         $admin = Admin::get();

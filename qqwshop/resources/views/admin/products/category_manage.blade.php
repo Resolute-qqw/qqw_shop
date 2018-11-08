@@ -55,7 +55,7 @@
     </div>
      <div class="border clearfix">
        <span class="l_f">
-        <a href="javascript:ovid()"  title="添加分类" class="btn btn-warning"><i class="icon-plus"></i>添加分类</a>
+        <a href="{{route('admin.category.create')}}"  title="添加分类" class="btn btn-warning"><i class="icon-plus"></i>添加分类</a>
         <a href="javascript:ovid()" class="btn btn-danger"><i class="icon-trash"></i>批量删除</a>
        </span>
        <span class="r_f">共：<b>234</b>个分类</span>

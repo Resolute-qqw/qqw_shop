@@ -118,4 +118,13 @@ class Admin extends Model
         Admin::where('id',$id)->delete();
         Role_admin::where('admin_id',$id)->delete();
     }
+    // public static function box(){
+    //     $data = Role_admin::where("admin_id",16)
+    //     ->with('role_pri')
+    //     ->get()
+    //     ->toArray();
+
+
+    //     dd($data);
+    // }
 }

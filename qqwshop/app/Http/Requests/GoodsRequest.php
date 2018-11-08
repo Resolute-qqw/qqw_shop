@@ -34,8 +34,6 @@ class GoodsRequest extends FormRequest
             'goods_image'=>'required',
             'attr_name'=>'required',
             'attr_value'=>'required',
-            'sku_name'=>'required',
-            'sku_value'=>'required',
         ];
     }
 }

@@ -32,6 +32,7 @@ class Goods extends Model
             {
                 $date = date('Ymd');
                 $goods_logo = $req->file('goods_logo')->store('goods_logos/'.$date ,"public");
+                $goods->goods_logo = $goods_logo;
 
                 $path = "./uploads/logo_thumb/$date";
 
@@ -52,7 +53,7 @@ class Goods extends Model
                 $img->save('./uploads/'.$mdname);
 
                 $bgname = str_replace('goods_logos/'.$date.'/','logo_thumb/'.$date.'/bg_', $goods_logo);
-                $img->resize(240,240);
+                $img->resize(200,200);
                 $img->save('./uploads/'.$bgname);
 
 
@@ -114,6 +115,26 @@ class Goods extends Model
         return $goods;
 
     }
+
+    public static function goods_item($id){
+        $data['goods'] = Goods::where("id",$id)->first();
+        $data['images'] = Goods_image::where("goods_id",$id)->get();
+        $data['images_one'] = Goods_image::where("goods_id",$id)->first();
+        $data['attr'] = Goods_attribute::where("goods_id",$id)->select('attr_name','attr_value')->get();
+
+        $sku = Goods_sku::where("goods_id",$id)
+        ->groupBy('sku_name')
+        ->select('sku_name',DB::raw('GROUP_CONCAT(sku_value SEPARATOR "&&") sku_value'))
+        ->get();
+        foreach($sku as $v){
+            $v->sku_value = explode("&&",$v->sku_value);
+        }
+        $data['sku'] = $sku;
+
+        return $data;
+    }
+
+    
 
 
 }

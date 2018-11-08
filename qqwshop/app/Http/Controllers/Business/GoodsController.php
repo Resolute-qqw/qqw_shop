@@ -35,6 +35,7 @@ class GoodsController extends Controller
         return $data;
     }
     public function store(GoodsRequest $req){
+        
         $id = Goods::add($req);
         $status2 = Goods_image::add($req,$id);
         $status3 = Goods_attribute::add($req,$id);

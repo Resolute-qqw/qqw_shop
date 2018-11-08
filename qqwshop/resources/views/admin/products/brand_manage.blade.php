@@ -79,7 +79,7 @@
           <td width="25px"><label><input type="checkbox" class="ace" ><span class="lbl"></span></label></td>
           <td width="80px">{{$v->id}}</td>
           {{-- <td width="50px"><input type="text" class="input-text text-c" value="1" style="width:60px"></td> --}}
-          <td><img src="/uploads/{{$v->brand_logo}}"  width="130" height="150"/></td>
+          <td><img src="/uploads/{{$v->brand_logo}}"  width="130" height="50"/></td>
           <td><a href="javascript:ovid()" name="Brand_detailed.html" style="cursor:pointer" class="text-primary brond_name" onclick="generateOrders('561');" title="玉兰油OLAY">{{$v->brand_name}}</a></td>
           <td class="text-l">{{$v->brand_describe}}</td>
           <td>{{$v->create}}</td>

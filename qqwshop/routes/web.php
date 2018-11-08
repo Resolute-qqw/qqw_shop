@@ -198,3 +198,38 @@ Route::get('/business/cooperation','Business\BusinessController@cooperation')->n
 // 
 // 
 // 商家后台
+
+// 网站前台
+// 
+// 
+// 
+// 
+Route::middleware(['user'])->group(function(){
+    // 首页
+    Route::get('/','Goods\GoodsController@index')->name('goods.index');
+    // 商品列表（类型）
+    Route::get('/goods/list/{id}','Goods\GoodsController@list')->name('goods.list');
+    // 商品详情页
+    Route::get('/goods/item/{id}','Goods\GoodsController@item')->name('goods.item');
+    // 加入购物车
+    Route::post('/goods/cart','Goods\GoodsController@cart')->name('goods.cart');
+    // 退出登录
+    Route::get('/user/logout','Goods\UserController@logout')->name('user.logout');
+
+});
+
+// 用户注册
+Route::get('/user/register','Goods\UserController@register')->name('user.register');
+Route::post('/user/doregister','Goods\UserController@doregister')->name('user.doregister');
+// 登录
+Route::get('/user/login','Goods\UserController@login')->name('user.login');
+Route::post('/user/dologin','Goods\UserController@dologin')->name('user.dologin');
+
+
+
+
+// 
+// 
+// 
+// 
+// 网站前台

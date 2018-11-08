@@ -10,7 +10,7 @@ class Goods_attribute extends Model
     protected $fillable = ['attr_name','attr_value'];
 
     public static function add($req,$id){
-
+        
         foreach($req->attr_name as $k=>$v){
 
             $goods_attribute = new self;

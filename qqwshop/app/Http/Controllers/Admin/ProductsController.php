@@ -27,9 +27,6 @@ class ProductsController extends Controller
             'goods_categorie'=>$goods_categorie,
         ]);
     }
-    public function category_add(){
-        return view("admin.products.products_category_add");
-    }
     public function add(){
         return view("admin.products.products_add");
     }
@@ -45,4 +42,20 @@ class ProductsController extends Controller
             return back()->with('tips','账号或密码错误');
         }
     }
+    public function category_create(){
+        $category = Goods_categorie::list();
+        
+        return view("admin.products.add_category",[
+            'category'=>$category,
+        ]);
+    }
+    public function category_store(Request $req){
+        $status = Goods_categorie::add_cate($req);
+
+        if($status['error']){
+            return redirect()->route('admin.category.create')->with('tips',$status['message']);
+        }
+        return redirect()->route('admin.category.manage')->with('tips','添加成功!');
+    }
+
 }
