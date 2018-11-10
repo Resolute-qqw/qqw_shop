@@ -48,7 +48,7 @@ class BusinessController extends Controller
         return redirect()->route('business.login')->with('tips','注册成功哒!');
     }
     public function logout(Request $req){
-        $req->session()->flush();
+        $req->session('business')->flush();
         return redirect()->route('business.login')->with('tips','注销成功!');
     }
 }

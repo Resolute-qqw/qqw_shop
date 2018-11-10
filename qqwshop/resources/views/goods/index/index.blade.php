@@ -18,13 +18,19 @@
 	<!--页面顶部-->
 <div id="nav-bottom">
 	<!--顶部-->
+	@if(session('tips'))
+		<script>alert('{{session('tips')}}');</script>
+	@endif
 	<div class="nav-top">
 		<div class="top">
 			<div class="py-container">
 				<div class="shortcut">
 					<ul class="fl">
 						<li class="f-item">品优购欢迎您！</li>
-						<li class="f-item">请<a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span></li>
+						@if(session('user'))
+							<li class="f-item">{{session('login_name')}}</li>
+							<li class="f-item"><span><a href="{{route('user.logout')}}">退出登录</a></span></li>
+						@endif
 					</ul>
 					<ul class="fr">
 						<li class="f-item">我的订单</li>

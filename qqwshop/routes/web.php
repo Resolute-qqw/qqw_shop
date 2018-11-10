@@ -211,8 +211,14 @@ Route::middleware(['user'])->group(function(){
     Route::get('/goods/list/{id}','Goods\GoodsController@list')->name('goods.list');
     // 商品详情页
     Route::get('/goods/item/{id}','Goods\GoodsController@item')->name('goods.item');
-    // 加入购物车
-    Route::post('/goods/cart','Goods\GoodsController@cart')->name('goods.cart');
+    // 添加购物车
+    Route::post('/goods/add_cart','Goods\GoodsController@add_cart')->name('goods.add_cart');
+    // 加入成功
+    Route::get('/goods/success_cart/{data}/{count}','Goods\GoodsController@success_cart')->name('goods.success_cart');
+    // 购物车
+    Route::get('/goods/cart','Goods\GoodsController@cart')->name('goods.cart');
+    // 修改购物车
+    Route::post('/goods/cart_ajax','Goods\GoodsController@cart_ajax')->name('goods.cart_ajax');
     // 退出登录
     Route::get('/user/logout','Goods\UserController@logout')->name('user.logout');
 

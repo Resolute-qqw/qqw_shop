@@ -19,13 +19,19 @@
 	<!--页面顶部 开始-->
 	<div id="nav-bottom">
 		<!--顶部-->
+		@if(session('tips'))
+			<script>alert('{{session('tips')}}');</script>
+		@endif
 		<div class="nav-top">
 			<div class="top">
 				<div class="py-container">
 					<div class="shortcut">
 						<ul class="fl">
 							<li class="f-item">品优购欢迎您！</li>
-							<li class="f-item">请<a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span></li>
+							@if(session('user'))
+								<li class="f-item">{{session('login_name')}}</li>
+								<li class="f-item"><span><a href="{{route('user.logout')}}">退出登录</a></span></li>
+							@endif
 						</ul>
 						<ul class="fr">
 							<li class="f-item">我的订单</li>
@@ -80,17 +86,17 @@
 									<li class="f-item">亿元优惠</li>
 									<li class="f-item">9.9元团购</li>
 									<li class="f-item">办公用品</li>
-
 								</ul>
 							</div>
 						</div>
 						<div class="yui3-u Right shopArea">
 							<div class="fr shopcar">
-								<div class="show-shopcar" id="shopcar">
+								{{-- id -> shopcar --}}
+								<div class="show-shopcar" id="">
 									<span class="car"></span>
-									<a class="sui-btn btn-default btn-xlarge" href="cart.html" target="_blank">
+									<a class="sui-btn btn-default btn-xlarge" href="{{route('goods.cart')}}" target="_blank">
 										<span>我的购物车</span>
-										<i class="shopnum">0</i>
+										<i class="shopnum">{{$cart_count}}</i>
 									</a>
 									<div class="clearfix shopcarlist" id="shopcarlist" style="display:none">
 										<p>"啊哦，你的购物车还没有商品哦！"</p>
@@ -213,11 +219,12 @@
 							</div>
 						</div>
 					</div>
-					<form action="{{route('goods.cart')}}" method="POST">
+					<form action="{{route('goods.add_cart')}}" method="POST">
 						@csrf
 						<input type="hidden" name="goods_id" value="{{$goods->id}}">
 						<input type="hidden" name="goods_name" value="{{$goods->goods_name}}">
 						<input type="hidden" name="goods_price" value="{{$goods->goods_price}}">
+						<input type="hidden" name="user_id" value="{{session('user')}}">
 						<div class="clearfix choose">
 							<div id="specification" class="summary-wrap clearfix">
 								@foreach($sku as $v)
@@ -228,12 +235,12 @@
 											<i>{{$v->sku_name}}</i>
 										</div>
 									</dt>
-								<dd name="fa_dd">
+								<dd name="fa_dd"> 
 									<input name="sku_value[]" class="sku_v" type="hidden" value="">
 								</dd>
 								<dd>
 									@foreach($v->sku_value as $k2=>$v2)
-									<a href="javascript:;" name="sku_status" @if($k2==0) class="selected" @endif >{{$v2}}</a>
+										<a href="javascript:;" name="sku_status" @if($k2==0) class="selected" @endif >{{$v2}}</a>
 									@endforeach
 								</dd>
 
@@ -246,7 +253,7 @@
 								<div class="fl title">
 									<div class="control-group">
 										<div class="controls">
-											<input name="count" type="text" value="1" class="itxt" />
+											<input name="goods_count" type="text" value="1" class="itxt" />
 											<a href="javascript:void(0)" onclick="number('plus')" class="increment plus">+</a>
 											<a href="javascript:void(0)" onclick="number('mins')" class="increment mins">-</a>
 										</div>
@@ -918,37 +925,40 @@
 	</script>
 	<script type="text/javascript" src="/goods_style/js/model/cartModel.js"></script>
 	<script type="text/javascript" src="/goods_style/js/plugins/jquery.easing/jquery.easing.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
 	<script type="text/javascript" src="/goods_style/js/plugins/sui/sui.min.js"></script>
 	<script type="text/javascript" src="/goods_style/js/plugins/jquery.jqzoom/jquery.jqzoom.js"></script>
 	<script type="text/javascript" src="/goods_style/js/plugins/jquery.jqzoom/zoom.js"></script>
-	<script type="text/javascript" src="/goods_style/index/index.js"></script>
+	{{-- <script type="text/javascript" src="/goods_style/index/index.js"></script> --}}
 
 
 	<!--页面底部  结束 -->
 </body>
 
 </html>
-<script src="/js/jquery.min.js"></script>
+
 <script>
 	var click_num = 0
 	$("a[name=sku_status]").click(function(){
 		$(this).parent().prev().children(".sku_v").val($(this).html())
+		var str = `<span title="点击取消选择">&nbsp;</span>`;
+		$(this).append(str)
 		if(click_num!==0){
 			$(this).toggleClass("selected");
 			$(this).siblings().removeClass("selected");
 		}
 	})
 	function number(number){
-		num = Number($("input[name=count]").val())
+		num = Number($("input[name=goods_count]").val())
 		
 		if(number=="plus"){
-			$("input[name=count]").val(num+1)
+			$("input[name=goods_count]").val(num+1)
 		}
 		if(number=="mins"){
 			if(num==1){
 				alert("数量最低为1")
 			}else{
-				$("input[name=count]").val(num-1)
+				$("input[name=goods_count]").val(num-1)
 			}
 		}
 	}
