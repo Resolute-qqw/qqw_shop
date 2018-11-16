@@ -25,14 +25,6 @@ class Goods_sku extends Model
                 $arr_k = substr($k,9);
                 $arr_value[$arr_k] = $data[$k];
             }
-            if( substr($k,0,5)=="price"){
-                $arr_k = substr($k,5);
-                $arr_price[$arr_k] = $data[$k];
-            }
-            if( substr($k,0,9)=="inventory"){
-                $arr_k = substr($k,9);
-                $arr_inventory[$arr_k] = $data[$k];
-            }
         }
 
         foreach($arr_name as $k=>$v){
@@ -42,8 +34,6 @@ class Goods_sku extends Model
                 $goods_sku->goods_id = $id;
                 $goods_sku->sku_name = $v[0];
                 $goods_sku->sku_value = $v2;
-                $goods_sku->inventory = $arr_inventory[$k][$k2];
-                $goods_sku->price = $arr_price[$k][$k2];
                 
                 $goods_sku->save();
             }

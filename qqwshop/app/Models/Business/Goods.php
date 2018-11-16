@@ -91,7 +91,7 @@ class Goods extends Model
             // ヾ(◍°∇°◍)ﾉﾞ
             $sku = DB::table('goods_skus')
             ->where('goods_id',$v->id)
-            ->select('sku_name','sku_value','inventory','price')
+            ->select('sku_name','sku_value')
             ->get();
             // =￣ω￣=
             $image = DB::table('goods_images')
@@ -115,7 +115,7 @@ class Goods extends Model
         return $goods;
 
     }
-
+    // 商品详情页信息
     public static function goods_item($id){
         $data['goods'] = Goods::where("id",$id)->first();
         $data['images'] = Goods_image::where("goods_id",$id)->get();
@@ -123,6 +123,7 @@ class Goods extends Model
         $data['attr'] = Goods_attribute::where("goods_id",$id)->select('attr_name','attr_value')->get();
 
         $sku = Goods_sku::where("goods_id",$id)
+        ->where("status",1)
         ->groupBy('sku_name')
         ->select('sku_name',DB::raw('GROUP_CONCAT(sku_value SEPARATOR "&&") sku_value'))
         ->get();
@@ -133,8 +134,54 @@ class Goods extends Model
 
         return $data;
     }
+    // 分类下de商品
+    public static function goods_list($id){
+        $data = Goods::where("goods_type_id",$id)
+                ->orwhere("goods_type_id2",$id)
+                ->orwhere("goods_type_id3",$id)
+                ->where('is_sku',1)
+                ->select('id','goods_name','goods_logo','is_sku')
+                ->get();
 
+        return $data;
+    }
+
+    public static function goods_sku($id){
+        $data = Goods_sku::where("goods_id",$id)
+        ->groupBy("sku_name")
+        ->select("*",DB::raw('GROUP_CONCAT(sku_value SEPARATOR "&&") sku_vals'),DB::raw('GROUP_CONCAT(id SEPARATOR "&&") ids'))
+        ->get();
+        foreach($data as $v){
+            $v->sku_vals = explode("&&",$v->sku_vals);
+            $v->ids = explode("&&",$v->ids);
+        }
+        return $data;
+    }
     
+    public static function goods_add_sku($data){
+        $data['status_id'] = json_decode($data['status_id']);
+        $data['sku_zuhe'] = json_decode($data['sku_zuhe']);
 
+        // 获取sku表 将选中的规格设置为1 否则0
+        $goods_sku = Goods_sku::where("goods_id",$data['goods_id'])->get();
+        foreach($goods_sku as $v){
+            if(in_array($v->id,$data['status_id'])){
+                Goods_sku::where('id',$v->id)->update(['status'=>1]);
+            }else{
+                Goods_sku::where('id',$v->id)->update(['status'=>0]);
+            }
+        }
+        // 往Sku_rules表里 插入规格
+        foreach($data['sku_zuhe'] as $k=>$v){
+            $setSku = new Sku_rule;
+            $setSku->goods_id = $data['goods_id'];
+            $setSku->sku_value = $v;
+            $setSku->Inventory = $data['Txt_PriceSon'][$k];
+            $setSku->price = $data['Txt_CountSon'][$k];
+            $setSku->save();
+        }
+        // 更新商品表is_sku状态
+        Goods::where("id",$data['goods_id'])->update(['is_sku'=>1]);
 
+    }
 }

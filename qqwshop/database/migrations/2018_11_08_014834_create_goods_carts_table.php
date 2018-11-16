@@ -20,7 +20,7 @@ class CreateGoodsCartsTable extends Migration
             $table->string('goods_name',255)->comment("商品名称");
             $table->string('goods_sku',255)->comment("商品规格");
             $table->float('goods_price',10,2)->comment('价格');
-            $table->tinyInteger('goods_status')->comment('购物车商品状态');
+            $table->tinyInteger('goods_status')->default(0)->comment('购物车商品状态');
             $table->unsignedInteger('goods_count')->comment("商品数量");
             $table->timestamps();
         });

@@ -78,6 +78,7 @@
 									      <th class="sorting">一级分类</th>
 									      <th class="sorting">二级分类</th>
 										  <th class="sorting">三级分类</th>
+										  <th class="sorting">是否选择规格</th>
 										  <th class="sorting">logo</th>
 									      {{-- <th class="sorting">状态</th>									     						 --}}
 					                      <th class="text-center">操作</th>
@@ -107,11 +108,23 @@
 		                                  	</span>
 										  </td>		                                   --}}
 										  <td>
+											  @if($v->is_sku==1)
+											  已选
+											  @else
+											  未选
+											  @endif
+										  </td>
+										  <td>
 										  <img src="/uploads/{{$v->goods_sm_logo}}" alt="">
 										  </td>
-		                                  <td class="text-center">                                          
-											   <button type="button" class="btn bg-olive btn-xs">修改</button>         
-											   <button type="button" class="btn bg-olive btn-xs" style="color:pink !important">删除</button>                        
+		                                  <td class="text-center">
+												@if($v->is_sku==1)
+												<button type="button" class="btn bg-olive btn-xs"><a style="color:#fff;" href="{{route('business.goods.goods_sku',['id'=>$v->id])}}">修改规格</a></button>
+												@else
+												<button type="button" class="btn bg-olive btn-xs"><a style="color:#fff;" href="{{route('business.goods.goods_sku',['id'=>$v->id])}}">添加规格</a></button>
+												@endif   
+												<button type="button" class="btn bg-olive btn-xs">修改属性</button> 
+												<button type="button" class="btn bg-olive btn-xs" style="color:pink !important">删除</button>                        
 		                                  </td>
 									  </tr>
 									  @endforeach

@@ -176,6 +176,9 @@ Route::middleware(['business'])->group(function(){
     Route::get('/business/goods/create','Business\GoodsController@create')->name('business.goods.create');
     // 商品添加
     Route::post('/business/goods/store','Business\GoodsController@store')->name('business.goods.store');
+    // 商品规格选取
+    Route::get('/business/goods/goods_sku/{id}','Business\GoodsController@goods_sku')->name('business.goods.goods_sku');
+    Route::post('/business/goods/add_sku_zuhe','Business\GoodsController@add_sku_zuhe')->name('business.goods.add_sku_zuhe');
     // ajax三级联动
     Route::get('/business/category/ajax','Business\GoodsController@category_ajax')->name('category.ajax');
 

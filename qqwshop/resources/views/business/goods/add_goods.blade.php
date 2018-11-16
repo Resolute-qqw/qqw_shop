@@ -229,10 +229,8 @@
 								 <table class="table table-bordered table-striped table-hover dataTable">
 					                    <thead>
 					                        <tr>
-											    <th class="sorting">SKU</th>
-												<th class="sorting">SKU值</th>
-												<th class="sorting">库存</th>
-											    <th class="sorting">价格</th>
+											    <th class="sorting">规格名称</th>
+												<th class="sorting">规格</th>
 												<th class="sorting">操作</th>
 							            </thead>
 					                    <tbody id="sku_box">
@@ -351,7 +349,7 @@
 	
 	$("#add_sku").click(function(){
 		number++
-		sku_str = '<tr><td width="20%" id="sku_n"><input type="text" name="sku_name'+number+'[]" sku_number="'+number+'"></td><td width="20%" id="sku_v"><input type="text" name="sku_value'+number+'[]" id=""></td><td width="20%" id="sku_i"><input type="text" name="inventory'+number+'[]" id=""></td><td width="20%" id="sku_p"><input type="text" name="price'+number+'[]" id=""></td><td width="20%"><button type="button" name="append_v" class="btn btn-default" title="追加sku值" ><i class="fa fa-trash-o"></i> 追加sku值</button><button type="button" name="sku_del" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button></td> </tr>';
+		sku_str = '<tr><td width="20%" id="sku_n"><input type="text" name="sku_name'+number+'[]" sku_number="'+number+'"></td><td width="20%" id="sku_v"><input type="text" name="sku_value'+number+'[]" id=""></td><td width="20%"><button type="button" name="append_v" class="btn btn-default" title="追加sku值" ><i class="fa fa-trash-o"></i> 追加sku值</button><button type="button" name="sku_del" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button></td> </tr>';
 		
 		$("#sku_box").append(sku_str);
 
@@ -360,16 +358,10 @@
 		})
 		$("button[name=append_v]").off("click").on("click",function(){
 			var skuNumber = $(this).parent().siblings('#sku_n').children().attr('sku_number')
-
-			var appsku_v = '<input type="text" name="sku_value'+skuNumber+'[]" id="">'
-			var appsku_i = '<input type="text" name="inventory'+skuNumber+'[]" id="">'
-			var appsku_p = '<input type="text" name="price'+skuNumber+'[]" id="">'
+			var appsku_v = '<br><input type="text" name="sku_value'+skuNumber+'[]" id="">'
 			
 			$(this).parent().siblings('#sku_v').append(appsku_v)
-			$(this).parent().siblings('#sku_i').append(appsku_i)
-			$(this).parent().siblings('#sku_p').append(appsku_p)
 		})
-		
 	})
 
 	$("select[name=goods_type_id]").change(function(){

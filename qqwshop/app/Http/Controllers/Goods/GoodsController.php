@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Business\Goods_categorie;
 use App\Models\Business\Goods;
+use App\Models\Business\Sku_rule;
 use App\Models\Goods\Goods_cart;
 
 class GoodsController extends Controller
@@ -13,15 +14,23 @@ class GoodsController extends Controller
     //
     public function index(){
         $category = Goods_categorie::index_cate();
-       
+        
         return view("goods.index.index",[
             'category'=>$category,
         ]);
     }
     public function list($id){
 
-        $goods_list = Goods_categorie::goods_list($id);
-        
+        $goods_list = Goods::goods_list($id);
+        foreach($goods_list as $k=>$v){
+            $max = Sku_rule::where('goods_id',$v->id)->max('price');
+            $min = Sku_rule::where('goods_id',$v->id)->min('price');
+            if($max!=$min)
+            $v->price = $min."~".$max;
+            else
+            $v->price = $max;
+        }
+
         return view("goods.index.list",[
             'goods_list'=>$goods_list,
         ]);

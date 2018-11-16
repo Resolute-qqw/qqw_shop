@@ -19,8 +19,8 @@ class CreateGoodsTable extends Migration
             $table->string('goods_sm_logo', 255)->comment('商品小logo');
             $table->string('goods_md_logo', 255)->comment('商品中logo');
             $table->string('goods_bg_logo', 255)->comment('商品大logo');
-
-            $table->enum('whether_sale', ['yes', 'no'])->comment('是否上架');
+            $table->tinyInteger('whether_sale')->default(0)->comment('是否上架');
+            $table->tinyInteger('is_sku')->default(0)->comment('是否选择了SKU');
             $table->longText('description')->comment('商品描述');
             $table->unsignedInteger('goods_type_id')->comment('商品id');
             $table->unsignedInteger('goods_type_id2');

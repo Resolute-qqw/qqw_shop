@@ -30,14 +30,6 @@ class Goods_categorie extends Model
         return $res;
     }
 
-    public static function goods_list($id){
-        $data = Goods::where("goods_type_id",$id)
-                ->orwhere("goods_type_id2",$id)
-                ->orwhere("goods_type_id3",$id)
-                ->get();
-                
-        return $data;
-    }
-
+    
    
 }

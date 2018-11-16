@@ -541,8 +541,6 @@
 		
 		$(".summoney").html("￥"+sum);
 	})
-	
-
 
 	function cart_ajax(status,cart_id,value=""){
 		data = {'_token':"{{csrf_token()}}",status:status,cart_id:cart_id,value:value}

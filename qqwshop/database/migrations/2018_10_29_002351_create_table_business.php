@@ -25,7 +25,7 @@ class CreateTableBusiness extends Migration
             $table->string('contacts_qq',255)->comment('联系人QQ');
             $table->string('contacts_phone',255)->comment('联系人电话');
             $table->string('contacts_email',255)->comment('联系人邮箱');
-            $table->enum('status', [0,1,2,3])->comment('商家状态');
+            $table->tinyInteger('status')->default(0)->comment('商家状态');
             $table->string('b_l_n',255)->comment('营销执照号');
             $table->string('t_r_c',255)->comment('税务登记证号');
             $table->string('o_c_c',255)->comment('组织机构代码证');
